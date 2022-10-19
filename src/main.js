@@ -6,6 +6,11 @@ const icon = document.querySelector("[data-card-icon]")
 
 function changeFlag(type) {
   const flag = {
+    default: {
+      color1: "#black",
+      color2: "#gray",
+      icon: "/public/cc-default.svg",
+    },
     visa: {
       color1: "#436D99",
       color2: "#2D57F2",
@@ -16,10 +21,25 @@ function changeFlag(type) {
       color2: "#C69347",
       icon: "/public/cc-mastercard.svg",
     },
-    default: {
-      color1: "#black",
-      color2: "#gray",
+    elo: {
+      color1: "#8000CE",
+      color2: "#F73A67",
+      icon: "/public/cc-elo.svg",
+    },
+    hiperrcard: {
+      color1: "#FF0000",
+      color2: "#FFFFFF",
       icon: "/public/cc-default.svg",
+    },
+    diners: {
+      color1: "#0E0E0E",
+      color2: "#0E0E0E",
+      icon: "/public/cc-diners.svg",
+    },
+    amex: {
+      color1: "#0E0E0E",
+      color2: "#FFFFFF30",
+      icon: "/public/cc-amex.svg",
     },
   }
 
@@ -28,4 +48,37 @@ function changeFlag(type) {
   icon.setAttribute("src", flag[type].icon)
 }
 
-changeFlag("")
+globalThis.changeFlag = changeFlag
+
+import IMask from "imask"
+
+const cvcField = document.querySelector("[data-cvc]")
+const cvcPattern = {
+  mask: "0000",
+  lazy: false,
+  placeholderChar: "",
+}
+const cvcMask = IMask(cvcField, cvcPattern)
+
+const year = new Date().getFullYear().toString()
+const yearYY = Number(year.substring(2))
+const expritaionField = document.querySelector("[data-expiration]")
+const expirationPattern = {
+  mask: "MM{/}YY",
+  blocks: {
+    MM: {
+      mask: IMask.MaskedRange,
+      from: 1,
+      to: 12,
+    },
+    YY: {
+      mask: IMask.MaskedRange,
+      from: yearYY,
+      to: yearYY + 10,
+    },
+  },
+  lazy: false,
+  placeholderChar: "_",
+}
+
+const expirationMask = IMask(expritaionField, expirationPattern)
