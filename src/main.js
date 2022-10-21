@@ -55,9 +55,12 @@ import IMask from "imask"
 const cvcField = document.querySelector("[data-cvc]")
 const cvcPattern = {
   mask: "0000",
-  lazy: false,
 }
 const cvcMask = IMask(cvcField, cvcPattern)
+cvcMask.on("accept", () => {
+  const cvcOutput = document.querySelector("[data-cvc-output]")
+  cvcOutput.innerHTML = cvcField.value.length === 0 ? 123 : cvcField.value
+})
 
 const year = new Date().getFullYear().toString()
 const yearYY = Number(year.substring(2))
@@ -76,14 +79,15 @@ const expirationPattern = {
       to: yearYY + 10,
     },
   },
-  lazy: false,
-  placeholderChar: "_",
 }
-
 const expirationMask = IMask(expritaionField, expirationPattern)
+expirationMask.on("accept", () => {
+  const expirationOutput = document.querySelector("[data-expiration-output]")
+  expirationOutput.innerText =
+    expritaionField.value.length === 0 ? "01/32" : expritaionField.value
+})
 
 const cardNumberField = document.querySelector("#card-number")
-
 const cardNumberPattern = {
   mask: [
     {
@@ -131,5 +135,22 @@ const cardNumberPattern = {
     })
   },
 }
-
 const cardNumberMask = IMask(cardNumberField, cardNumberPattern)
+
+const nameField = document.querySelector("[data-name]")
+nameField.addEventListener("input", () => {
+  const nameOutput = document.querySelector("[data-name-output]")
+  nameOutput.innerHTML =
+    nameField.value.length === 0 ? "John Doe" : nameField.value
+})
+
+cardNumberMask.on("accept", () => {
+  const cardNumberOutput = document.querySelector("[data-card-number-output]")
+
+  cardNumberOutput.innerText =
+    cardNumberMask.value.length === 0
+      ? "1234 5678 9012 3456"
+      : cardNumberMask.value
+  const cardType = cardNumberMask.masked.currentMask.cardtype
+  changeFlag(cardType)
+})
