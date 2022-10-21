@@ -9,37 +9,37 @@ function changeFlag(type) {
     default: {
       color1: "#black",
       color2: "#gray",
-      icon: "/public/cc-default.svg",
+      icon: "/cc-default.svg",
     },
     visa: {
       color1: "#436D99",
       color2: "#2D57F2",
-      icon: "/public/cc-visa.svg",
+      icon: "/cc-visa.svg",
     },
     mastercard: {
       color1: "#DF6F29",
       color2: "#C69347",
-      icon: "/public/cc-mastercard.svg",
+      icon: "/cc-mastercard.svg",
     },
     elo: {
       color1: "#8000CE",
       color2: "#F73A67",
-      icon: "/public/cc-elo.svg",
+      icon: "/cc-elo.svg",
     },
     hiperrcard: {
       color1: "#FF0000",
       color2: "#FFFFFF",
-      icon: "/public/cc-default.svg",
+      icon: "/cc-default.svg",
     },
     diners: {
       color1: "#0E0E0E",
       color2: "#0E0E0E",
-      icon: "/public/cc-diners.svg",
+      icon: "/cc-diners.svg",
     },
     amex: {
       color1: "#0E0E0E",
       color2: "#FFFFFF30",
-      icon: "/public/cc-amex.svg",
+      icon: "/cc-amex.svg",
     },
   }
 
